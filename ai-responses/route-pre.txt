@@ -1,0 +1,50 @@
+import { NextResponse } from 'next/server';
+import { PineconeClient } from '@pinecone-database/pinecone';
+import fetch from 'node-fetch';  // Ensure fetch is available in the environment
+
+const apiKey = process.env.PINECONE_API_KEY;
+const indexName = 'rag';
+
+async function generateEmbedding(text) {
+    // Example: Return a dummy 1536-dimensional array
+    return Array(1536).fill(0.1);
+}
+
+export async function POST(req) {
+    try {
+        const data = await req.json();
+        const queryText = data[data.length - 1].content;
+
+        const pinecone = new PineconeClient();
+        pinecone.init(apiKey);
+
+        const index = pinecone.Index(indexName);
+        const queryEmbedding = await generateEmbedding(queryText);
+
+        if (queryEmbedding.length !== 1536) {
+            throw new Error('Query embedding vector dimension does not match index dimension.');
+        }
+
+        const results = await index.query({
+            vector: queryEmbedding,
+            topK: 3,
+            includeMetadata: true,
+            namespace: 'ns1',
+        });
+
+        let resultString = `Here are some professor reviews that might help:\n\n`;
+        results.matches.forEach((match) => {
+            resultString += `
+            Professor: ${match.id}
+            Review: ${match.metadata.review}
+            Subject: ${match.metadata.subject}
+            Stars: ${match.metadata.stars}
+            \n\n`;
+        });
+
+        return NextResponse.json({ role: 'assistant', content: resultString });
+    } catch (error) {
+        console.error('Error handling the request:', error);
+        return NextResponse.json({ error: 'An error occurred while processing your request.' }, { status: 500 });
+    }
+}

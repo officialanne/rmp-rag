@@ -12,6 +12,20 @@
         "review": "Excellent professor...",
         "subject": "English",
         "stars": 5
+      },
+
+      {
+        "professor": "Prof3",
+        "review": "Okay professor...",
+        "subject": "French",
+        "stars": 3
+      },
+
+      {
+        "professor": "Prof4",
+        "review": "Good enough professor...",
+        "subject": "Biology",
+        "stars": 2
       }
       
     ]
