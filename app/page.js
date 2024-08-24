@@ -8,24 +8,15 @@ import {
   Box,
   AppBar, 
   Toolbar, 
-  Grid
+  Grid,
+  Stack
 } from '@mui/material'
 import { useState, React } from 'react';
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton, ClerkProvider } from "@clerk/nextjs";
 import Head from 'next/head'
-import { ClerkProvider } from "@clerk/nextjs";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 
 export default function Home() {
-
-
   
   return (
     <Container
@@ -63,7 +54,7 @@ export default function Home() {
           {' '}
           The easiest way to find and rate professors.
         </Typography>
-        <Button variant="contained" color="primary" sx={{mt: 2, mr: 2}} href="/generate">
+        <Button variant="contained" color="primary" sx={{mt: 2, mr: 2}} href="/getprof">
           Get Started
         </Button>
         <Button variant="outlined" color="primary" sx={{mt: 2}}>
@@ -98,65 +89,6 @@ export default function Home() {
               Access your flashcards from any device, at any time. Study on the go at ease.
             </Typography>
           </Grid>
-        </Grid>
-      </Box>
-
-      <Box sx={{my: 6, textAlign: 'center'}}>
-        <Typography variant="h4" gutterBottom>Pricing</Typography>
-        <Grid container spacing={4} justifyContent="center">
-          {/* Pricing plans */}
-          <Grid item xs = {12} md = {6}> 
-            <Box 
-              sx={{
-                p: 3,
-                border: '1px solid',
-                borderColor: 'grey.300',
-                borderRadius: 2,
-
-            }}
-            >
-              <Typography variant="h5" gutterBottom>Basic</Typography>
-              <Typography variant="h6" gutterBottom>$5 / month</Typography>
-              <Typography> 
-                {' '}
-                Access to basic flashcard features and limited storage
-              </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                sx = {{mt: 2}}
-              >
-                Choose Basic
-              </Button>
-            </Box>
-          </Grid>
-          <Grid item xs = {12} md = {6}> 
-            <Box 
-              sx={{
-                  p: 3,
-                  border: '1px solid',
-                  borderColor: 'grey.300',
-                  borderRadius: 2,
-
-              }}
-              >
-                <Typography variant="h5" gutterBottom>Pro</Typography>
-                <Typography variant="h6" gutterBottom>$10 / month</Typography>
-                <Typography> 
-                  {' '}
-                  Limited flashcards and storage, with priority support.
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx = {{mt: 2}}
-                  href = "/getprof"
-                >
-                  Choose Pro
-                </Button>
-              </Box>
-          </Grid>
-          
         </Grid>
       </Box>
     </Container>
