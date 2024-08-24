@@ -1,3 +1,6 @@
+#run to update with new data in new_reviews.json
+
+
 from pinecone import Pinecone
 import json
 import os
