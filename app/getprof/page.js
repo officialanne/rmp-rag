@@ -20,7 +20,7 @@ import { useTheme } from '@mui/material/styles';
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-export default function getProf() {
+export default function Home() {
 
 
     const [messages, setMessages] = useState([
