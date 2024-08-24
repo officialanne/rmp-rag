@@ -9,11 +9,15 @@ import {
   AppBar, 
   Toolbar, 
   Grid,
-  Stack
+  Stack,
+  CircularProgress, Collapse
 } from '@mui/material'
-import { useState, React } from 'react';
+import { useState, React, useRef, useEffect } from 'react';
 import { SignedIn, SignedOut, UserButton, ClerkProvider } from "@clerk/nextjs";
 import Head from 'next/head'
+import { AccountCircle, SupportAgent } from '@mui/icons-material';
+import { useTheme } from '@mui/material/styles';
+import { motion } from 'framer-motion'; // Import motion
 
 
 export default function Home() {
@@ -70,15 +74,15 @@ export default function Home() {
             <Typography variant="h6" gutterBottom>Easy Text Input</Typography>
             <Typography> 
               {' '}
-              Simply put in your text and let our software do the rest. Creating flashcards has never been easier.
+              Simply put in your request and let our software do the rest. Finding professors has never been easier.
             </Typography>
           </Grid>
           <Grid item xs = {12} md = {4}> 
             {/* Feature items */}
-            <Typography variant="h6" gutterBottom>Smart Flashcards</Typography>
+            <Typography variant="h6" gutterBottom>Smart Responses</Typography>
             <Typography> 
               {' '}
-              Our AI intelligently breaks down your text into concise flashcards, perfect for studying.
+              Our AI intelligently breaks down your text to find professors relevant to your queries.
             </Typography>
           </Grid>
           <Grid item xs = {12} md = {4}> 
@@ -86,7 +90,7 @@ export default function Home() {
             <Typography variant="h6" gutterBottom>Accessible Anywhere</Typography>
             <Typography> 
               {' '}
-              Access your flashcards from any device, at any time. Study on the go at ease.
+              Access ratings from any device, at any time. Find out about professors on the go at ease.
             </Typography>
           </Grid>
         </Grid>

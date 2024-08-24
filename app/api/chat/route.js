@@ -29,10 +29,10 @@ export async function POST(req) {
 
         matchingReviews.forEach((review) => {
             resultString += `
-            Professor: ${review.professor}
-            Review: ${review.review}
-            Subject: ${review.subject}
-            Stars: ${review.stars}
+            \nProfessor: ${review.professor}
+            \nReview: ${review.review}
+            \nSubject: ${review.subject} 
+            \nStars: ${review.stars}
             \n\n`;
         });
 
